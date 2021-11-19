@@ -54,4 +54,8 @@ public class RaceGroup {
     public TextShape getPercentage() {
         return null;
     }
+    
+    public boolean equals(Object other) {
+        return false;
+    }
 }

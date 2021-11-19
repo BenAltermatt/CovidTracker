@@ -31,4 +31,12 @@ public class State {
     public RaceGroup[] getRaceGroups() {
         return null;
     }
+    
+    public boolean equals(Object other) {
+        return false;
+    }
+    
+    public int compareTo(State other) {
+        return -1;
+    }
 }

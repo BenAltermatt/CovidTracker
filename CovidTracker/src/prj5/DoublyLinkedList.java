@@ -66,6 +66,10 @@ public class DoublyLinkedList<E> implements Iterable<E>{
     public DLLIterator iterator() {
         return null;
     }
+    
+    public boolean equals(Object other) {
+        return false;
+    }
 
     private static class Node<E> {
         private E data;
@@ -94,6 +98,10 @@ public class DoublyLinkedList<E> implements Iterable<E>{
         
         public Node<E> getPrevious() {
             return null;
+        }
+        
+        public boolean equals(Object other) {
+            return false;
         }
         
         
