@@ -12,7 +12,7 @@ public class State {
     private CompareByAlpha alphaCompare;
     private CompareByCFR ratioCompare;
     
-    public State(String stateName) {
+    public State(String[] parsedDescriptions) {
         
     }
     
