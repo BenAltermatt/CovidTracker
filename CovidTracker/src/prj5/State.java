@@ -7,5 +7,28 @@
 package prj5;
 
 public class State {
-
+    private String name;
+    private DoublyLinkedList<RaceGroup> races;
+    private CompareByAlpha alphaCompare;
+    private CompareByCFR ratioCompare;
+    
+    public State(String stateName) {
+        
+    }
+    
+    public String getName() {
+        return null;
+    }
+    
+    public void sortByAlpha() {
+        
+    }
+    
+    public void sortByCFR() {
+        
+    }
+    
+    public RaceGroup[] getRaceGroups() {
+        return null;
+    }
 }
