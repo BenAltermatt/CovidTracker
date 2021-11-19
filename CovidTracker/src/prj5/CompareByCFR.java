@@ -6,6 +6,11 @@
 // -- Benjamin Altermat, benaltermatt@vt.edu, 906347458
 package prj5;
 
-public class CompareByCFR {
+import java.util.Comparator;
 
+public class CompareByCFR implements Comparator<RaceGroup>{
+    
+    public int compare(RaceGroup group1, RaceGroup group2) {
+        return -1;
+    }
 }

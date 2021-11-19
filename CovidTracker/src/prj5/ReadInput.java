@@ -7,5 +7,15 @@
 package prj5;
 
 public class ReadInput {
-
+    private String filename;
+    
+    public static final String DEFAULT_FILE = "";
+    
+    public ReadInput(String file) {
+        
+    }
+    
+    public State[] readIn() {
+        return null;
+    }
 }

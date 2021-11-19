@@ -6,11 +6,6 @@
 // -- Benjamin Altermat, benaltermatt@vt.edu, 906347458
 package prj5;
 
-import java.util.Comparator;
+public class GUI {
 
-public class CompareByAlpha implements Comparator<RaceGroup>{
-    
-    public int compare(RaceGroup group1, RaceGroup group2) {
-        return -1;
-    }
 }

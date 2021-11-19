@@ -7,5 +7,9 @@
 package prj5;
 
 public class Input {
-
+    private GUI display;
+    
+    public static void main(String[] args) {
+        
+    }
 }
