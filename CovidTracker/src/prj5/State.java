@@ -42,7 +42,7 @@ public class State {
     }
 
 
-    public RaceGroup[] getRaceGroups() {
+    public DoublyLinkedList<RaceGroup> getRaceGroups() {
         return null;
     }
 
