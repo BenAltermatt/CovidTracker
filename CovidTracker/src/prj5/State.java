@@ -11,6 +11,12 @@ public class State {
     private DoublyLinkedList<RaceGroup> races;
     private CompareByAlpha alphaCompare;
     private CompareByCFR ratioCompare;
+    
+    /**
+     * This is the value that will be passed to
+     * a RaceGroup when data is NA.
+     */
+    public static final int NA_VAL = -1;
 
     /**
      * Takes a cut up string for the state. e.g., it takes
