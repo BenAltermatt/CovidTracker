@@ -89,17 +89,7 @@ public class RaceGroupTest extends TestCase {
         assertEquals(group.getCFR(), (double) 500 / 35);
         
         // test for wierd value
-        // should try and fail to divide by zero as stands
-        Exception exception = null;
-        try {
-            baseGroup.getCFR();
-            fail("This should have tried to divide by zero.");
-        }
-        catch(Exception e) {
-            exception = e;
-        }
-        
-        assertTrue(exception instanceof ArithmeticException);
+        assertEquals(group.getCFR(), -1.0);
     }
     
     /**
@@ -147,7 +137,7 @@ public class RaceGroupTest extends TestCase {
         assertEquals(group.getPercentage(), new TextShape(0, 0, "7%"));
         
         // test for weird
-        assertEquals(baseGroup.getPercentage(), new TextShape(0, 0, "Illegal Data"));
+        assertEquals(baseGroup.getPercentage(), new TextShape(0, 0, "NA"));
     }
 
 }

@@ -10,7 +10,7 @@ import cs2.Shape;
 import cs2.TextShape;
 
 public class RaceGroup {
-    
+
     private String state;
     private String race;
     private int cases;
@@ -18,44 +18,62 @@ public class RaceGroup {
     private Shape bar;
     private TextShape label;
     private TextShape percentage;
-    
-    public RaceGroup(String stateName, String raceName, int numCases, int numDeaths) {
-        
+
+    public RaceGroup(
+        String stateName,
+        String raceName,
+        int numCases,
+        int numDeaths) {
+
     }
-    
+
+
     public String getState() {
         return null;
     }
-    
+
+
     public String getRace() {
         return null;
     }
-    
+
+
     public int getCases() {
         return -1;
     }
-    
+
+
     public int getDeaths() {
         return -1;
     }
-    
+
+
     public double getCFR() {
         return -1.0;
     }
-    
+
+
     public Shape getBar() {
         return null;
     }
-    
+
+
     public TextShape getLabel() {
         return null;
     }
-    
+
+
     public TextShape getPercentage() {
         return null;
     }
-    
+
+
     public boolean equals(Object other) {
         return false;
+    }
+
+
+    public String toString() {
+        return null;
     }
 }
