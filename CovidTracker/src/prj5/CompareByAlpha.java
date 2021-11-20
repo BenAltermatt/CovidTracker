@@ -8,10 +8,26 @@ package prj5;
 
 import java.util.Comparator;
 
-public class CompareByAlpha implements Comparator<RaceGroup>{
-    
+/**
+ * This class exists to make it easier to sort
+ * RaceGroups by race alphabetically.
+ * 
+ * @author Benjamin Altermatt
+ * @version 2021.11.19
+ */
+public class CompareByAlpha implements Comparator<RaceGroup> {
+
+    /**
+     * Returns a value representative of the position the
+     * first group should be in relation to the second
+     * group depending on name. The earlier alphabetically
+     * group1 is than group2, the more negative the number.
+     * 
+     * @return
+     *         Comparison value
+     */
     public int compare(RaceGroup group1, RaceGroup group2) {
-        return -1;
+        return group1.getRace().compareTo(group2.getRace());
     }
-    
+
 }
