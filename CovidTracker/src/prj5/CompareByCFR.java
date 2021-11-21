@@ -23,17 +23,17 @@ public class CompareByCFR implements Comparator<RaceGroup> {
      * if the second should be sorted earlier than the first.
      * 0 if they have the same sort position.
      * 
+     * @param group1
+     *            The left RaceGroup being compared
+     * @param group2
+     *            The right RaceGroup being compared
      * @return
      *         Comparison value
      */
     public int compare(RaceGroup group1, RaceGroup group2) {
-        double difCFR = group2.getCFR() - group1.getCFR();
 
-        if (difCFR < 0) {
-            return -1;
-        }
-        if (difCFR > 0) {
-            return 1;
+        if (Double.compare(group2.getCFR(), group1.getCFR()) != 0) {
+            return Double.compare(group2.getCFR(), group1.getCFR());
         }
 
         CompareByAlpha auxComparer = new CompareByAlpha();

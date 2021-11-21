@@ -71,7 +71,7 @@ public class RaceGroup {
                                 // cases or
                                 // deaths are NA
             bar = new Shape(0, 0, 0, 0);
-            percentage = new TextShape(0, 0, "NA");
+            percentage = new TextShape(0, 0, "na");
         }
         else {
             bar = new Shape(0, 0, (int)(getCFR() * 1000));

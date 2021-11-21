@@ -6,8 +6,6 @@
 // -- Benjamin Altermat, benaltermatt@vt.edu, 906347458
 package prj5;
 
-import cs2.Shape;
-import cs2.TextShape;
 import student.TestCase;
 
 /**
@@ -146,7 +144,7 @@ public class RaceGroupTest extends TestCase {
         assertEquals(group.getPercentage().getText(), "7%");
 
         // test for weird
-        assertEquals(baseGroup.getPercentage().getText(), "NA");
+        assertEquals(baseGroup.getPercentage().getText(), "na");
     }
 
 
@@ -163,8 +161,15 @@ public class RaceGroupTest extends TestCase {
         // check different type
         assertFalse(group.equals(new Object()));
 
-        // check different RaceGroup
-        assertFalse(group.equals(baseGroup));
+        // check different RaceGroups
+        // dif state
+        assertFalse(group.equals(new RaceGroup("Atlanta", "White", 500, 35)));
+        // dif name
+        assertFalse(group.equals(new RaceGroup("Florida", "Black", 500, 35)));
+        // dif cases
+        assertFalse(group.equals(new RaceGroup("Florida", "White", 400, 35)));
+        // dif deaths
+        assertFalse(group.equals(new RaceGroup("Florida", "White", 500, 40)));
 
         // check same value RaceGroup
         RaceGroup same = new RaceGroup("Florida", "White", 500, 35);

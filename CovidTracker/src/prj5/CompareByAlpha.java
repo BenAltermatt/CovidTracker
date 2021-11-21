@@ -23,6 +23,10 @@ public class CompareByAlpha implements Comparator<RaceGroup> {
      * group depending on name. The earlier alphabetically
      * group1 is than group2, the more negative the number.
      * 
+     * @param group1
+     *            The first RaceGroup being compared
+     * @param group2
+     *            The second RaceGroup being compared
      * @return
      *         Comparison value
      */

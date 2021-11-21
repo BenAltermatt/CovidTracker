@@ -25,15 +25,16 @@ public class StateTest extends TestCase {
      */
     public void setUp() {
         // relatively realistic values
-        state = new State("DC,10,10,30,40,50,5,5,7,8,NA".split(","),
-            ("State,Cases_White,Cases_Black,Cases_LatinX,"
+        state = new State("DC,10,10,30,40,50,5,5,7,8,NA".toLowerCase().split(
+            ","), ("State,Cases_White,Cases_Black,Cases_LatinX,"
                 + "Cases_Asian,Cases_Other,Deaths_White,Deaths_Black,"
-                + "Deaths_LatinX,Deaths_Asian,Deaths_Other").split(","));
+                + "Deaths_LatinX,Deaths_Asian,Deaths_Other").toLowerCase()
+                    .split(","));
 
         // abnormal input sequence
-        strangeState = new State("NA,MI,NA,12,3".split(","),
-            "Cases_White,State,Deaths_White,Cases_Asian,Deaths_Asian".split(
-                ","));
+        strangeState = new State("NA,MI,NA,12,3".toLowerCase().split(","),
+            "Cases_White,State,Deaths_White,Cases_Asian,Deaths_Asian"
+                .toLowerCase().split(","));
     }
 
 
@@ -58,13 +59,13 @@ public class StateTest extends TestCase {
         // sort and then compare the tostrings
         state.sortByAlpha();
 
-        assertEquals(state.toString(), "DC\n" + "asian: 40 cases, 20.0% CFR\n"
-            + "black: 10 cases, 50.0% CFR\n" + "latinx: 30 cases, 23.3% CFR\n"
-            + "other: 50 cases, -1.0% CFR\n" + "white: 10 cases, 50.0% CFR");
+        assertEquals(state.toString(), "DC\n" + "asian: 40 cases, 20% CFR\n"
+            + "black: 10 cases, 50% CFR\n" + "latinx: 30 cases, 23.3% CFR\n"
+            + "other: 50 cases, -1% CFR\n" + "white: 10 cases, 50% CFR\n");
 
         strangeState.sortByAlpha();
         assertEquals(strangeState.toString(), "MI\n"
-            + "asian: 12 cases, 25.0% CFR\n" + "white: -1 cases, -1.0% CFR");
+            + "asian: 12 cases, 25% CFR\n" + "white: -1 cases, -1% CFR\n");
     }
 
 
@@ -76,13 +77,13 @@ public class StateTest extends TestCase {
         // sort and then compare the tostrings
 
         state.sortByCFR();
-        assertEquals(state.toString(), "DC\n" + "black: 10 cases, 50.0% CFR\n"
-            + "white: 10 cases, 50.0% CFR" + "latinx: 30 cases, 23.3% CFR\n"
-            + "asian: 40 cases, 20.0% CFR\n" + "other: 50 cases, -1.0% CFR\n");
+        assertEquals(state.toString(), "DC\n" + "black: 10 cases, 50% CFR\n"
+            + "white: 10 cases, 50% CFR\n" + "latinx: 30 cases, 23.3% CFR\n"
+            + "asian: 40 cases, 20% CFR\n" + "other: 50 cases, -1% CFR\n");
 
         strangeState.sortByCFR();
         assertEquals(strangeState.toString(), "MI\n"
-            + "asian: 12 cases, 25.0% CFR\n" + "white: -1 cases, -1.0% CFR");
+            + "asian: 12 cases, 25% CFR\n" + "white: -1 cases, -1% CFR\n");
     }
 
 
@@ -93,17 +94,17 @@ public class StateTest extends TestCase {
     public void testGetRaceGroups() {
         // build the racegroup dll
         DoublyLinkedList<RaceGroup> races = new DoublyLinkedList<RaceGroup>();
-        races.add(new RaceGroup("DC", "White", 10, 5));
-        races.add(new RaceGroup("DC", "Black", 10, 5));
-        races.add(new RaceGroup("DC", "LatinX", 30, 7));
-        races.add(new RaceGroup("DC", "Asian", 40, 8));
-        races.add(new RaceGroup("DC", "Other", 50, -1));
+        races.add(new RaceGroup("DC", "white", 10, 5));
+        races.add(new RaceGroup("DC", "black", 10, 5));
+        races.add(new RaceGroup("DC", "latinx", 30, 7));
+        races.add(new RaceGroup("DC", "asian", 40, 8));
+        races.add(new RaceGroup("DC", "other", 50, -1));
 
         assertEquals(races, state.getRaceGroups());
 
         races = new DoublyLinkedList<RaceGroup>();
-        races.add(new RaceGroup("MI", "White", -1, -1));
-        races.add(new RaceGroup("MI", "Asian", 12, 3));
+        races.add(new RaceGroup("MI", "white", -1, -1));
+        races.add(new RaceGroup("MI", "asian", 12, 3));
 
         assertEquals(races, strangeState.getRaceGroups());
     }
@@ -123,13 +124,28 @@ public class StateTest extends TestCase {
         // test for different type of object
         assertFalse(state.equals(new Object()));
 
-        // test for different state
-        assertFalse(state.equals(strangeState));
-
-        State sameState = new State("DC,10,10,30,40,50,5,5,7,8,NA".split(","),
-            ("State,Cases_White,Cases_Black,Cases_LatinX,"
+        // test for different states
+        // different name
+        State diffName = new State("HI,10,10,30,40,50,5,5,7,8,NA".toLowerCase()
+            .split(","), ("State,Cases_White,Cases_Black,Cases_LatinX,"
                 + "Cases_Asian,Cases_Other,Deaths_White,Deaths_Black,"
-                + "Deaths_LatinX,Deaths_Asian,Deaths_Other").split(","));
+                + "Deaths_LatinX,Deaths_Asian,Deaths_Other").toLowerCase()
+                    .split(","));
+        assertFalse(state.equals(diffName));
+
+        // different race data
+        State diffRaces = new State("DC,10,11,30,40,50,5,5,7,8,NA".toLowerCase()
+            .split(","), ("State,Cases_White,Cases_Black,Cases_LatinX,"
+                + "Cases_Asian,Cases_Other,Deaths_White,Deaths_Black,"
+                + "Deaths_LatinX,Deaths_Asian,Deaths_Other").toLowerCase()
+                    .split(","));
+        assertFalse(state.equals(diffRaces));
+
+        State sameState = new State("DC,10,10,30,40,50,5,5,7,8,NA".toLowerCase()
+            .split(","), ("State,Cases_White,Cases_Black,Cases_LatinX,"
+                + "Cases_Asian,Cases_Other,Deaths_White,Deaths_Black,"
+                + "Deaths_LatinX,Deaths_Asian,Deaths_Other").toLowerCase()
+                    .split(","));
 
         // test for state of same value
         assertEquals(state, sameState);
@@ -148,10 +164,11 @@ public class StateTest extends TestCase {
         assertTrue(strangeState.compareTo(state) > 0);
 
         // alphabetically the same
-        State sameState = new State("DC,10,10,30,40,50,5,5,7,8,NA".split(","),
-            ("State,Cases_White,Cases_Black,Cases_LatinX,"
+        State sameState = new State("DC,10,10,30,40,50,5,5,7,8,NA".toLowerCase()
+            .split(","), ("State,Cases_White,Cases_Black,Cases_LatinX,"
                 + "Cases_Asian,Cases_Other,Deaths_White,Deaths_Black,"
-                + "Deaths_LatinX,Deaths_Asian,Deaths_Other").split(","));
+                + "Deaths_LatinX,Deaths_Asian,Deaths_Other").toLowerCase()
+                    .split(","));
 
         assertEquals(state.compareTo(sameState), 0);
     }
@@ -162,12 +179,12 @@ public class StateTest extends TestCase {
      * class
      */
     public void testToString() {
-        assertEquals(state.toString(), "DC\n" + "white: 10 cases, 50.0% CFR"
-            + "black: 10 cases, 50.0% CFR\n" + "latinx: 30 cases, 23.3% CFR\n"
-            + "asian: 40 cases, 20.0% CFR\n" + "other: 50 cases, -1.0% CFR\n");
+        assertEquals(state.toString(), "DC\n" + "white: 10 cases, 50% CFR\n"
+            + "black: 10 cases, 50% CFR\n" + "latinx: 30 cases, 23.3% CFR\n"
+            + "asian: 40 cases, 20% CFR\n" + "other: 50 cases, -1% CFR\n");
 
         assertEquals(strangeState.toString(), "MI\n"
-            + "white: -1 cases, -1.0% CFR" + "asian: 12 cases, 25.0% CFR\n");
+            + "white: -1 cases, -1% CFR\n" + "asian: 12 cases, 25% CFR\n");
     }
 
 }
